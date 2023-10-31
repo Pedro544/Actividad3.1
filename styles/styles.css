@@ -35,3 +35,11 @@ button:hover{
 button:active{
     background-color: red;   
 }
+/*Formulario de crear_producto*/
+input, select{
+    border: black solid;
+    display: block;
+    padding:0.5%;
+    width:15%;
+    margin-bottom: 3%;
+}
