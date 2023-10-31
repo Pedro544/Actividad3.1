@@ -1,12 +1,3 @@
-<?php
-include "datos_conexion.php";
-try{
-    $conexion = new PDO("mysql:host=localhost;dbname=$database",$user_name,"$password");
-    $conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-} catch (PDOException){
-    die("ERROR: Conexión fallida a la base de datos...");
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
