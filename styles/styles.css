@@ -1,45 +1,26 @@
 /*Estilos más generales*/
-* {
- box-sizing: border-box;
-}
-
-body{
-    background-color: #66ff33;
-    font-family: Arial, Helvetica, sans-serif;
-}
+* {box-sizing: border-box;}
+body {background-color: #66ff33;font-family: Arial, Helvetica, sans-serif;}
 /*Estilos de títulos*/
-h1{
-    font-size: 2.4em;
-    text-align: center;
-}
+h1 {font-size: 2.4em;text-align: center;}
 /*Estilos de las opciones*/
-a{
-    display:block;
-    margin-block:3%;
+a {display: block;margin-block: 3%;}
+button {
+  border: black 5px solid;
+  color: white;
+  background-color: #990000;
+  font-size: 1.5em;
+  text-align: center;
+  width: 30%;
+  padding: 2%;
 }
-
-button{
-    border: black 5px solid;
-    color:white;
-    background-color: #990000;
-    font-size: 1.5em;
-    text-align: center;
-    width:30%;
-    padding: 2%;
-}
-
-button:hover{
-    background-color: #cc3333;
-}
-
-button:active{
-    background-color: red;   
-}
+button:hover {background-color: #cc3333;}
+button:active {background-color: red;}
 /*Formulario de crear_producto*/
-input, select{
-    border: black solid;
-    display: block;
-    padding:0.5%;
-    width:15%;
-    margin-bottom: 3%;
+input, select {
+  border: black solid;
+  display: block;
+  padding: 0.5%;
+  width: 15%;
+  margin-bottom: 3%;
 }
