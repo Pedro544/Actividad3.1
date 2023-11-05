@@ -18,6 +18,15 @@ function esNumero($numero){
     return is_numeric($numero);
 }
 /**
+ * Comprueba si el número pasado como parámetro tiene menos de
+ * dos decimales.
+ * 
+ * Si es así, devuelve true, si no, devuelve false.
+ */
+function dosOMenosDecimales($numero){
+    return strlen(substr(strrchr($numero,"."),1)) <= 2;
+}
+/**
  * Comprueba si el fichero pasado como parámetro representa una imagen.
  * 
  * Si es así, devuelve true, si no, devuelve false.

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="author" content="Pedro García Santana">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creación de producto (Creación)</title>
+    <title>Creación de producto</title>
     <link rel="stylesheet" href="styles/styles.css">
   </head>
   <body>
@@ -26,9 +26,7 @@
         <option value="4">Categoria4</option>
       </select>
       <button type="submit">Insertar producto</button>
-    </form>
-  </body>
-</html>
+    </form> <!--Las etiquetas de cierre de <body> y <html> están al final-->
     <?php else :?> <!--Si $_POST no está vacío es porque se enviaron los datos. Primero se hace la validación y luego se muestra el resultado.-->
     <!--Validación-->
     <?php
@@ -41,8 +39,8 @@
     if ($nombre == "" || esNumero($nombre)){
       $errores[] = "El nombre del producto no fue enviado o solo tiene caracteres numéricos.";
     }
-    if (!esNumero($precio)){
-      $errores[] = "El precio del producto no fue enviado o tiene caracteres no numéricos.";
+    if (!esNumero($precio) || !dosOMenosDecimales($precio)){
+      $errores[] = "El precio del producto no fue enviado, tiene caracteres no numéricos o más de 2 cifras decimales.";
     } else{
       $precio = floatval($precio);
     }
