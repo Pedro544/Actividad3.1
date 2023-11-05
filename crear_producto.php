@@ -1,4 +1,4 @@
-<?php if (empty($_POST)): ?>
+<?php if (empty($_POST)): ?> <!--Si $_POST está vacío es porque no se envió nada, así que se muestra el formulario.-->
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -29,7 +29,7 @@
     </form>
   </body>
 </html>
-<?php else :?>
+<?php else :?> <!--Si $_POST no está vacío es porque se enviaron los datos, por lo que comienza la validación.-->
   <?php
   include_once "funciones_validacion.php";
   $nombre = $_POST["nombre"];
@@ -58,12 +58,8 @@
     $errores[] = "La categoría del producto no coincide con ninguna de las que están registradas.";
   }
   ?>
-  <?php if (empty($errores)): ?>
-    <?php
-    include "conexion.php";
-    $insert = $conexion->exec("INSERT INTO productos VALUES (NULL, '$nombre', $precio, '$nombreImagen', '$categoria');");
-    ?>
-    <!DOCTYPE html>
+<!--Tras la validación, se muestra un HTML cuyo contenido (en el body) variará en función de si hubo errores o no.-->
+  <!DOCTYPE html>
     <html lang="es">
       <head>
         <meta charset="UTF-8">
@@ -73,32 +69,20 @@
         <link rel="stylesheet" href="styles/styles.css">
       </head>
       <body>
-        <?php
+      <?php
+      if (empty($errores)){
+        include "conexion.php";
+        $insert = $conexion->exec("INSERT INTO productos VALUES (NULL, '$nombre', $precio, '$nombreImagen', '$categoria');");
         echo "<h2>El producto fue registrado correctamente.</h2>";
         echo "<a href='index.php'><button type='button'>Volver al menú principal</button></a>";
-        ?>
-      </body>
-    </html>
-  <?php else:?>
-    <!DOCTYPE html>
-    <html lang="es">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="author" content="Pedro García Santana">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Creación de producto (Resultado)</title>
-        <link rel="stylesheet" href="styles/styles.css">
-      </head>
-      <body>
-        <?php
+      } else{
         echo "<h2>Hubo errores al insertar el producto:</h2>";
         foreach ($errores as $error) {
           echo "<p>-$error</p>";
         }
         echo "<a href='crear_producto.php'><button type='button'>Volver a rellenar el formulario</button></a>";
-        ?>
+      }
+      ?>
       </body>
     </html>
-  <?php endif;?>
-
 <?php endif;?>
