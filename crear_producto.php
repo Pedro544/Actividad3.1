@@ -64,7 +64,7 @@
     $insert = $conexion->exec("INSERT INTO productos VALUES (NULL, '$nombre', $precio, '$nombreImagen', '$categoria');");
     ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
       <head>
         <meta charset="UTF-8">
         <meta name="author" content="Pedro García Santana">
@@ -79,9 +79,26 @@
         ?>
       </body>
     </html>
-
   <?php else:?>
-
+    <!DOCTYPE html>
+    <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Pedro García Santana">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creación de producto (Resultado)</title>
+        <link rel="stylesheet" href="styles/styles.css">
+      </head>
+      <body>
+        <?php
+        echo "<h2>Hubo errores al insertar el producto:</h2>";
+        foreach ($errores as $error) {
+          echo "<p>-$error</p>";
+        }
+        echo "<a href='crear_producto.php'><button type='button'>Volver a rellenar el formulario</button></a>";
+        ?>
+      </body>
+    </html>
   <?php endif;?>
 
 <?php endif;?>
