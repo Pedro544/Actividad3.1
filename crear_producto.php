@@ -55,11 +55,12 @@
       $errores[] = "La categoría del producto no coincide con ninguna de las que están registradas.";
     }
     ?>
-    <!--Contenido-->
-    <?php if (empty($errores)):?> <!--Si no hubo errores, se insertan los datos y se muestra un mensaje junto con botón de vuelta a menú principal-->
+    <!--Contenido (body)-->
+    <?php if (empty($errores)):?> <!--Si no hubo errores, se insertan los datos, se mueve la imagen y se muestra un mensaje junto con botón de vuelta a menú principal-->
     <?php
     include "conexion.php";
     $insert = $conexion->exec("INSERT INTO productos VALUES (NULL, '$nombre', $precio, '$nombreImagen', '$categoria');");
+    move_uploaded_file($imagen["tmp_name"],"imagenes_productos/$nombreImagen");
     ?>
     <h2>El producto fue registrado correctamente.</h2>
     <a href='index.php'><button type='button'>Volver al menú principal</button></a>
