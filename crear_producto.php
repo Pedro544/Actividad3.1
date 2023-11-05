@@ -20,10 +20,10 @@
       <input type="file" name="imagen" id="imagen" required>
       <label for="categoria">Categoría del producto</label>
       <select name="categoria" id="categoria" required>
-        <option value="Categoria1">Categoria1</option>
-        <option value="Categoria2">Categoria2</option>
-        <option value="Categoria3">Categoria3</option>
-        <option value="Categoria4">Categoria4</option>
+        <option value="1">Categoria1</option>
+        <option value="2">Categoria2</option>
+        <option value="3">Categoria3</option>
+        <option value="4">Categoria4</option>
       </select>
       <button type="submit">Insertar producto</button>
     </form>
@@ -31,7 +31,6 @@
 </html>
 <?php else :?>
   <?php
-  include "conexion.php";
   include_once "funciones_validacion.php";
   $nombre = $_POST["nombre"];
   $precio = $_POST["precio"];
@@ -59,14 +58,27 @@
     $errores[] = "La categoría del producto no coincide con ninguna de las que están registradas.";
   }
   ?>
-
   <?php if (empty($errores)): ?>
-  <?php
-  //Inserción en la tabla del nuevo producto.
-  // $precio = floatval($precio);
-  // $nombreImagen = $imagen["name"];
-  // $conexion->exec("INSERT INTO productos VALUES (NULL, $");
-  ?>
+    <?php
+    include "conexion.php";
+    $insert = $conexion->exec("INSERT INTO productos VALUES (NULL, '$nombre', $precio, '$nombreImagen', '$categoria');");
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Pedro García Santana">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creación de producto (Resultado)</title>
+        <link rel="stylesheet" href="styles/styles.css">
+      </head>
+      <body>
+        <?php
+        echo "<h2>El producto fue registrado correctamente.</h2>";
+        echo "<a href='index.php'><button type='button'>Volver al menú principal</button></a>";
+        ?>
+      </body>
+    </html>
 
   <?php else:?>
 

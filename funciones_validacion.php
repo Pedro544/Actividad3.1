@@ -32,7 +32,7 @@ function esImagen($imagen){
  * Si es así, devuelve true, si no, devuelve false.
  */
 function categoriaValida($categoria){
-    define("CATEGORIAS", array("Categoria1", "Categoria2", "Categoria3", "Categoria4")); //Valores en crear_producto.php
+    define("CATEGORIAS", array("1", "2", "3", "4")); //Valores en crear_producto.php
     return in_array($categoria,CATEGORIAS);
 }
 ?>
