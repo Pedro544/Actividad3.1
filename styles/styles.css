@@ -24,3 +24,24 @@ input, select {
   width: 15%;
   margin-bottom: 3%;
 }
+/*Tabla de listar productos*/
+table {
+  border-collapse: collapse; 
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+}
+
+table, caption, th, td{
+  border: black solid;
+}
+
+img[alt="modify"]:hover{width:120px;height:120px;}
+
+img[alt="delete"]:hover{width:130px;height:130px;}
+
+th, td {font-size: 2em;}
+
+td {border-bottom-width: 10px;padding-block:10px;}
+
+caption {font-size: 3em;}
