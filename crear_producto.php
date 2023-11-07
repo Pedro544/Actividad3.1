@@ -57,7 +57,8 @@
     <?php if (empty($errores)):?> <!--Si no hubo errores, se insertan los datos, se mueve la imagen y se muestra un mensaje junto con botón de vuelta a menú principal-->
     <?php
     include "conexion.php";
-    $insert = $conexion->exec("INSERT INTO productos VALUES (NULL, '$nombre', $precio, '$nombreImagen', '$categoria');");
+    $conexion->exec("INSERT INTO productos VALUES (NULL, '$nombre', $precio, '$nombreImagen', '$categoria');");
+    $conexion = null;
     move_uploaded_file($imagen["tmp_name"],"imagenes_productos/$nombreImagen");
     ?>
     <h2>El producto fue registrado correctamente.</h2>
