@@ -35,13 +35,10 @@ table {
 table, caption, th, td{
   border: black solid;
 }
-
-img[alt="modify"]:hover{width:120px;height:120px;}
-
-img[alt="delete"]:hover{width:130px;height:130px;}
-
 th, td {font-size: 2em;}
 
 td {border-bottom-width: 10px;padding-block:10px;}
 
 caption {font-size: 3em;}
+.m-o-d:hover {background-color: green;border-radius: 25%;}
+.m-o-d:active {background-color: rgb(5, 201, 5);}

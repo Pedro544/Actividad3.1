@@ -18,30 +18,48 @@
         <th>Modificar</th>
         <th>Eliminar</th>
       </tr>
-      <tr>
-        <td>Nombre</td>
-        <td>Precio</td>
-        <td><img src="imgs/Euler.png" alt="euler" width="100" height="100"></td>
-        <td>Categoría</td>
-        <td><img src="imgs/icons8-modify-58.png" alt="modify"></td>
-        <td><img src="imgs/icons8-delete-100.png" alt="delete"></td>
-      </tr>
-      <tr>
-        <td>Nombre</td>
-        <td>Precio</td>
-        <td><img src="imgs/Euler.png" alt="euler" width="100" height="100"></td>
-        <td>Categoría</td>
-        <td><img src="imgs/icons8-modify-58.png" alt="modify"></td>
-        <td><img src="imgs/icons8-delete-100.png" alt="delete"></td>
-      </tr>
-      <tr>
-        <td>Nombre</td>
-        <td>Precio</td>
-        <td><img src="imgs/Euler.png" alt="euler" width="100" height="100"></td>
-        <td>Categoría</td>
-        <td><img src="imgs/icons8-modify-58.png" alt="modify"></td>
-        <td><img src="imgs/icons8-delete-100.png" alt="delete"></td>
-      </tr>                
+      <?php
+      include "conexion.php";
+      $sentencia_datos = $conexion->query(
+        "SELECT 
+          productos.id as ID, 
+          productos.nombre AS producto, 
+          precio, 
+          imagen, 
+          categorías.nombre AS categoria 
+         FROM 
+              productos 
+         INNER JOIN 
+              categorías 
+         ON 
+         categorías.id = productos.categoría 
+         ORDER BY producto;"
+      );
+      $datos = $sentencia_datos->fetch(PDO::FETCH_ASSOC);
+      while ($datos){
+        echo "<tr>";
+          echo "<td>". $datos["producto"] . "</td>";
+          echo "<td>" . $datos["precio"] . "</td>";
+          echo "<td>
+                  <img src=\"imagenes_productos/".$datos["imagen"]."\" alt=".$datos["imagen"]." 
+                  width=\"120\" height=\"120\">
+                </td>";
+          echo "<td>" . $datos["categoria"] . "</td>";
+          echo "<td>
+                  <a class=\"m-o-d\" href=\"edita_producto.php?id=" . $datos["ID"] . "\">" .
+                    "<img src=\"imgs/modify.png\" alt=\"modify.png\" width=\"90\" height=\"90\">
+                  </a>    
+                </td>";
+          echo "<td>
+                  <a class=\"m-o-d\" href=\"elimina_producto.php?id=" . $datos["ID"] . "\">" .
+                    "<img src=\"imgs/delete.png\" alt=\"delete.png\" width=\"120\" height=\"120\">
+                  </a>    
+                </td>";
+        echo "</tr>";
+        $datos = $sentencia_datos->fetch(PDO::FETCH_ASSOC);
+      }
+      $conexion = null;
+      ?>
     </table>
   </body>
 </html>
