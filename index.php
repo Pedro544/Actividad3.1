@@ -11,7 +11,7 @@
         <h1>Mantenimiento de productos de tienda online</h1>
         <h2>¿Qué quieres hacer?</h2>
         <a href="crear_producto.php"><button type="button">Crear producto</button></a>
-        <a href="listado_productos.php"><button>Consultar el listado de productos</button></a>
+        <a href="listar_productos.php"><button>Consultar el listado de productos</button></a>
         <a href="modifica_producto.php"><button>Modificar producto</button></a>
         <a href="elimina_producto.php"><button>Eliminar producto</button></a>
     </body>
