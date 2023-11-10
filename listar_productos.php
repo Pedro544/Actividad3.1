@@ -46,12 +46,12 @@
                 </td>";
           echo "<td>" . $datos["categoria"] . "</td>";
           echo "<td>
-                  <a class=\"m-o-d\" href=\"edita_producto.php?id=" . $datos["ID"] . "\">" .
+                  <a class=\"m-o-d\" href=\"edita_producto.php?producto=" . $datos["ID"] . "\">" .
                     "<img src=\"imgs/modify.png\" alt=\"modify.png\" width=\"90\" height=\"90\">
                   </a>    
                 </td>";
           echo "<td>
-                  <a class=\"m-o-d\" href=\"elimina_producto.php?id=" . $datos["ID"] . "\">" .
+                  <a class=\"m-o-d\" href=\"elimina_producto.php?producto=" . $datos["ID"] . "\">" .
                     "<img src=\"imgs/delete.png\" alt=\"delete.png\" width=\"120\" height=\"120\">
                   </a>    
                 </td>";
