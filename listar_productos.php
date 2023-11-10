@@ -61,5 +61,6 @@
       $conexion = null;
       ?>
     </table>
+    <a href="index.php"><button type="button">Volver al principio</button></a>
   </body>
 </html>

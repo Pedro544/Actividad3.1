@@ -16,7 +16,7 @@
       <select name="producto" id="producto">
         <?php
         include "conexion.php";
-        $sentencia = $conexion->query("SELECT productos.id, productos.nombre FROM productos;");
+        $sentencia = $conexion->query("SELECT id, nombre FROM productos ORDER BY nombre;");
         $datos = $sentencia->fetch(PDO::FETCH_ASSOC);
         $conexion = null;
         while ($datos) {
@@ -37,11 +37,12 @@
       precio, 
       categoría 
       FROM productos
-      WHERE ID=".$_GET["producto"]);
+      WHERE ID=".$_GET["producto"]
+    );
     $datos = $sentencia->fetch(PDO::FETCH_ASSOC);
     $conexion = null;
     ?>
-    <form action="edita_producto.php?producto=<?php echo $id;?>" method="post">
+    <form action="edita_producto.php?producto=<?php echo $id;?>" method="post" enctype="multipart/form-data">
       <input type="hidden" name="producto" value="<?php echo $id;?>">
       <label for='nombre'>Nombre del producto</label>
       <?php echo "<input type='text' name='nombre' id='nombre' value='".$datos["nombre"]."' required>";?>
@@ -67,11 +68,62 @@
       <button type='submit'>Cambiar producto</button>
     </form>
     <?php else: ?>
-    <h2>Mensaje de actualización</h2>
+    <?php
+    include_once "funciones_validacion.php";
+    $nombre = $_POST["nombre"];
+    $precio = $_POST["precio"];
+    $imagen = $_FILES["imagen"];
+    $categoria = $_POST["categoria"];
+    $errores = array();
+    if ($nombre == "" || esNumero($nombre)){
+      $errores[] = "El nombre del producto no fue enviado o solo tiene caracteres numéricos.";
+    }
+    if (!esNumero($precio) || !dosOMenosDecimales($precio)){
+      $errores[] = "El precio del producto no fue enviado, tiene caracteres no numéricos o más de 2 cifras decimales.";
+    } else{
+      $precio = floatval($precio);
+    }
+    if ($imagen["error"] == 4 || !esImagen($imagen)){
+      $errores[] = "El fichero con la imagen no fue enviado o el formato no corresponde a una imagen.";
+    } else{
+      $nombreImagenNueva = $imagen["name"];
+    }
+    if (!categoriaValida($categoria)){
+      $errores[] = "La categoría del producto no coincide con ninguna de las que están registradas.";
+    }
+    ?>
+    <?php if (empty($errores)):?>
+    <?php
+    include "conexion.php";
+    $id_producto = $_POST["producto"];
+    $nombreImagenVieja = $conexion->query(
+      "SELECT imagen FROM productos WHERE id=$id_producto")
+      ->fetch(PDO::FETCH_ASSOC)["imagen"];
+
+    unlink("imagenes_productos/$nombreImagenVieja");
+    move_uploaded_file($imagen["tmp_name"],"imagenes_productos/$nombreImagenNueva");
+    $conexion->query(
+      "UPDATE productos 
+      SET nombre='$nombre', 
+      precio=$precio, 
+      imagen='$nombreImagenNueva', 
+      categoría=$categoria 
+      WHERE id=$id_producto;"
+      );
+    ?>
+    <h2>El producto fue modificado correctamente</h2>
     <a href="index.php"><button type="button">Volver al principio</button></a>
+    <?php else:?>
+    <h2>Hubo una serie de errores al modificar el producto:</h2>
+    <?php
+      foreach ($errores as $error) {
+        echo "<p>-$error</p>";
+      }
+    ?>
     <a href="edita_producto.php?producto=<?php echo $_POST["producto"];?>">
-      <button type="button">Volver a modificar</button>
+      <button type="button">Volver a modificar el producto</button>
     </a>
+    <?php endif;?>
     <?php endif; ?>
   </body>
 </html>
