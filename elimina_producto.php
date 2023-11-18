@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["ID_USUARIO"])){
+    header("Location: formulario_login.php");
+}
+?>
 <!DOCTYPE HTML>  
 <html>
     <head>
@@ -11,10 +17,8 @@
         <?php
             $servername = "localhost";
             $username = "mitiendaonline";
-            $password = "mitiendaonline";
+            $password = "1234";
             $db = "mitiendaonline";
-            session_start();
-    
             $conn = new mysqli($servername, $username, $password, $db);
     
             if ($conn->connect_error) {
@@ -35,7 +39,7 @@
                 if ($result = $conn->query($productos)) {
                     $server = $_SERVER['REQUEST_URI'];
                     echo "<div>";
-                    echo "<h1>ID no encotrada, seleccione el producto a editar</h1>";
+                    echo "<h1>ID no encontrada, seleccione el producto a eliminar</h1>";
                     echo "<form action='$server' method='get'>";
                     echo "<select name='producto'>";
                     while ($row = $result->fetch_assoc()) {

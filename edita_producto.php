@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["ID_USUARIO"])){
+    header("Location: formulario_login.php");
+}
+?>
 <?php error_reporting(E_ERROR);?>
 <!DOCTYPE html>
 <html lang="en">

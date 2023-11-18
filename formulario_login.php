@@ -31,6 +31,7 @@
     $datos = $consulta_ejecutada->fetch(PDO::FETCH_ASSOC);
     if (!$datos || !password_verify($_POST["contraseña"],$datos["contrasena_hash"])){
         echo "<h2>ERROR: El correo electrónico o contraseña no es correcto.</h2>";
+        echo "<a href='formulario_login.php'><button type='submit'>Volver</button></a>";
     } else{
         session_start();
         $_SESSION["ID_USUARIO"] = $datos["id"];
