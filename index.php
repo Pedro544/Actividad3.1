@@ -20,5 +20,6 @@ if (!isset($_SESSION["ID_USUARIO"])){
         <a href="listar_productos.php"><button>Consultar el listado de productos</button></a>
         <a href="edita_producto.php"><button>Modificar producto</button></a>
         <a href="elimina_producto.php"><button>Eliminar producto</button></a>
+        <a href="cierre_sesion.php"><button>Cerrar sesión</button></a>
     </body>
 </html>
